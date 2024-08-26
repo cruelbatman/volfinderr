@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VolFinder</title>
+        <link rel="stylesheet" href="style.css">
+        
+    </head>
+    <body>
+
+        <nav class="navbar" id="site-primary-nav">
+            <div class="navbar-left">
+                <a href="index.html" class="logo"> <img src="images/logo3.png"></a>
+                
+                <div class="search-box">
+                    <img src="images/search.png">
+                    <input type="text" placeholder="Search">
+                </div>
+            </div>
+            <div class="navbar-center">
+                <ul>
+                    <li><a href="index.html" class="active-link"><img src="images/home.png"> <span>Home</span></a></li>
+                    <li><a href="#"><img src="images/network.png"> <span>My Networks</span></a></li>
+                    
+                    <li><a href="#"><img src="images/message.png"> <span>Messaging</span></a></li>
+                    
+                </ul>
+            </div>
+            <div class="navbar-right">
+               <div class="online">
+                <img src="images/vprofile.jpg" class="nav-profile-img" onclick="toggleMenu()">
+               </div>
+              </div>
+            <!---profile dropdown menu-->
+            <div class="profile-menu-wrap" id="profileMenu">
+                <div class="profile-menu">
+                    <div class="user-info">
+                        <img src="images/vprofile.jpg">
+                        <div>
+                            <h1 id="profile-name"></h1>
+                            <a href="profile.html">See your profile</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <a href="#" class="profile-menu-link">
+                        <img src="images/feedback.png">
+                        <p>Give Feedback</p>
+                        <span></span>
+                    </a>
+                    <a href="#" class="profile-menu-link">
+                        <img src="images/setting.png">
+                        <p>Settings & Privacy</p>
+                        <span></span>
+                    </a>
+                    <a href="#" class="profile-menu-link">
+                        <img src="images/help.png">
+                        <p>Help & Support</p>
+                        <span></span>
+                    </a>
+                    <a href="login.html" onclick="logout()" class="profile-menu-link">
+                        <img src="images/logout.png">
+                        <p>Logout</p>
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+
+        </nav>
+
+        <!------ navbar close----- -->
+
+        <div class="container">
+            <div class="profile-main">
+                <div class="profile-container" id="profile-container">
+                    <img src="images/volfinder cover.png" width="100%">
+                    <div class="profile-container-inner">
+                        <img src="images/vprofile.jpg" class="profile-pic" id="profile-pic">
+                        <h1 id="profile-name"></h1>
+                        <b id="profile-company"></b>
+                        <p id="profile-location"></p>
+                        <p id="profile-email"></p>
+                        <p id="profile-phone"></p>
+                        <div class="profile-btn">
+                            <a href="#" class="primary-btn"><img src="images/connect.png">Connect</a>
+                            <a href="#" class="secondary-btn"><img src="images/chat.png">Message</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="update-container">
+                <h1>Update Your Profile</h1>
+                <form id="profile-form" onsubmit="updateProfile(event)">
+                    <div class="form-group">
+                        <label for="profile-picture">Profile Picture:</label>
+                        <input type="file" id="profile-picture" name="profile-picture" accept="image/*" required>
+                        <div class="image-preview" id="image-preview">
+                            <img id="preview-img" src="" alt="Profile Preview">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="first-name">First Name:</label>
+                        <input type="text" id="first-name" name="first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name:</label>
+                        <input type="text" id="last-name" name="last-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Organization:</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="location">Location:</label>
+                        <select id="location" name="location" class="custom-select">
+                            <option value="Accra">ACCRA</option>
+                            <option selected value="Kumasi">KUMASI</option>
+                            <option value="Ho">HO</option>
+                            <option value="Cape Coast">CAPE COAST</option>
+                            <option value="Tamale">TAMALE</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Update Profile</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ------profile-sidebar---------->
+            <div class="profile-sidebar"></div>
+        </div>
+
+        <div class="profile-footer">
+            <div class="sidebar-useful-links">
+                <a href="#">About</a>
+                <a href="#">Accessibility</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">More</a>
+                <div class="Copyright-msg">
+                    <img src="images/logo3.png">
+                    <p>Volfinder &#169; 2024. All rights reserved</p>
+                </div>
+            </div>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+        <script src="./profile.js"></script>
+        <script>
+            let profileMenu = document.getElementById("profileMenu");
+            function toggleMenu() {
+                profileMenu.classList.toggle("open-menu");
+            }
+    
+            // document.getElementById('profile-form').addEventListener('submit', function(event) {
+            //     event.preventDefault();
+    
+            //     let firstName = document.getElementById('first-name').value;
+            //     let lastName = document.getElementById('last-name').value;
+            //     let company = document.getElementById('company').value;
+            //     let email = document.getElementById('email').value;
+            //     let location = document.getElementById('location').value;
+            //     let phone = document.getElementById('phone').value;
+    
+            //     document.getElementById('profile-name').textContent = firstName + ' ' + lastName;
+            //     document.getElementById('profile-company').textContent = company;
+            //     document.getElementById('email').textContent = email;
+            //     document.getElementById('profile-location').textContent = location;
+            //     document.getElementById('phone').textContent = phone;
+    
+            //     let profilePicture = document.getElementById('profile-picture').files[0];
+            //     if (profilePicture) {
+            //         let storageRef = firebase.storage().ref('profile_pictures/' + profilePicture.name);
+            //         let uploadTask = storageRef.put(profilePicture);
+    
+            //         uploadTask.on('state_changed', function(snapshot) {
+            //             // Progress function (optional)
+            //         }, function(error) {
+            //             console.error('Error uploading profile picture:', error);
+            //         }, function() {
+            //             uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+            //                 // Save data to Firebase Realtime Database
+            //                 firebase.database().ref('users/1').set({
+            //                     firstName: firstName,
+            //                     lastName: lastName,
+            //                     company: company,
+            //                     email: email,
+            //                     location: location,
+            //                     phone: phone,
+            //                     profilePic: downloadURL
+            //                 });
+    
+            //                 // Update profile picture on the page
+            //                 document.getElementById('profile-pic').src = downloadURL;
+    
+            //                 // Clear the form after submission
+            //                 document.getElementById('profile-form').reset();
+            //                 document.getElementById('preview-img').src = '';
+            //             });
+            //         });
+            //     } else {
+            //         // Save data to Firebase Realtime Database without profile picture
+            //         firebase.database().ref('users/1').set({
+            //             firstName: firstName,
+            //             lastName: lastName,
+            //             company: company,
+            //             email: email,
+            //             location: location,
+            //             phone: phone
+            //         });
+    
+            //         // Clear the form after submission
+            //         document.getElementById('profile-form').reset();
+            //         document.getElementById('preview-img').src = '';
+            //     }
+            // });
+    
+            // Preview the selected image
+            document.getElementById('profile-picture').addEventListener('change', function(event) {
+                let profilePicture = event.target.files[0];
+                if (profilePicture) {
+                    let reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('preview-img').src = e.target.result;
+                    };
+                    reader.readAsDataURL(profilePicture);
+                }
+            });
+        </script>
+    </body>
+</html>

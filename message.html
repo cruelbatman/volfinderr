@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE= edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VolFinder</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js">
+    </head>
+    <body  onload="onLoad()">
+
+        <nav class="navbar" id="site-primary-nav">
+            <div class="navbar-left">
+                <a href="index.html" class="logo"> <img src="images/logo3.png"></a>
+                
+                <div class="search-box">
+                    <img src="images/search.png">
+                    <input type="text" placeholder="Search">
+                </div>
+            </div>
+            <div class="navbar-center">
+                <ul>
+                    <li><a href="index.html" class="active-link"><img src="images/home.png"> <span>Home</span></a></li>
+                    <li><a href="#"><img src="images/network.png"> <span>My Networks</span></a></li>
+                    <li><a href="message.html"><img src="images/message.png"> <span>Messaging</span></a></li>
+                   
+                </ul>
+            </div>
+            <div class="navbar-right">
+               <div class="online">
+                <img src="images/vprofile.jpg" class="nav-profile-img" onclick="toggleMenu()">
+               </div>
+              </div>
+            <!---profile dropdown menu-->
+            <div class="profile-menu-wrap" id="profileMenu">
+                <div class="profile-menu">
+                    <div class="user-info">
+                        <img src="images/vprofile.jpg">
+                        <div>
+                            <h1 id="profile-name"></h1>
+                          <a href="profile.html">See your profile</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <a href="#" class="profile-menu-link">
+                        <img src="images/feedback.png">
+                        <p>Give Feedback</p>
+                        <span></span>
+                    </a>
+                    <a href="#" class="profile-menu-link">
+                        <img src="images/setting.png">
+                        <p>Settings & Privacy</p>
+                        <span></span>
+                    </a>
+                    <a href="#" class="profile-menu-link">
+                        <img src="images/help.png">
+                        <p>Help & Support</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="login.html" onclick="logout()" class="profile-menu-link">
+                        <img src="images/logout.png">
+                        <p>Logout</p>
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+
+
+
+
+            <div class="messaging-container">
+                <header>
+                    <h1>Chat with Support</h1>
+                </header>
+                <div class="chat-area">
+                    <div class="message received">
+                        <p>Hello! How can I assist you today?</p>
+                        <span class="time">10:00 AM</span>
+                    </div>
+                    <div class="message sent">
+                        <p>I need help with my account.</p>
+                        <span class="time">10:02 AM</span>
+                    </div>
+                    <!-- Additional messages can be added here -->
+                </div>
+                <div class="message-input">
+                    <input type="text" placeholder="Type your message...">
+                    <button>Send</button>
+                </div>
+            </div>
+        </body>
+        </html>
